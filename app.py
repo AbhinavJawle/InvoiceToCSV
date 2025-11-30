@@ -17,7 +17,7 @@ else:
     st.error("API-Key fehlt! Bitte überprüfe deine .env Datei.")
     st.stop()
 
-st.title("⚡ InvoiceToCSV")
+st.title("InvoiceToCSV")
 st.markdown("Extrahiere strukturierte Daten aus Rechnungen in Sekunden.")
 st.markdown("---")
 
@@ -48,7 +48,7 @@ with col_controls:
         if not st.session_state.use_sample:
              st.success("Datei geladen, bereit zur Extraktion.")
         
-        if st.button("✨ Daten extrahieren", type="primary", use_container_width=True):
+        if st.button("Daten extrahieren", type="primary", use_container_width=True):
             
             with st.spinner("KI liest das Dokument..."):
                 try:
