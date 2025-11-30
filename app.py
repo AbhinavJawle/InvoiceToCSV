@@ -23,7 +23,12 @@ st.markdown("---")
 
 col_controls, col_preview = st.columns([1, 1], gap="medium")
 
-
+with col_controls:
+    st.subheader("1. Hochladen")
+    
+    uploaded_file = st.file_uploader("PDF oder Bild hier ablegen", type=['png', 'jpg', 'jpeg'], label_visibility="collapsed")
+    
+    
 
 with col_preview:
     if active_file:
