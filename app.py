@@ -27,7 +27,24 @@ with col_controls:
     st.subheader("1. Hochladen")
     
     uploaded_file = st.file_uploader("PDF oder Bild hier ablegen", type=['png', 'jpg', 'jpeg'], label_visibility="collapsed")
-    
+    if "use_sample" not in st.session_state:
+        st.session_state.use_sample = False
+
+    if st.button("📄 Beispielrechnung laden (Testmodus)"):
+        st.session_state.use_sample = True
+        
+    active_file = None
+    if uploaded_file:
+        active_file = uploaded_file
+        st.session_state.use_sample = False # Reset if user uploads manually
+    elif st.session_state.use_sample:
+        if os.path.exists("sample_invoice.png"): # Make sure this file exists!
+            active_file = "sample_invoice.png"
+            st.info("Beispielrechnung wird verwendet.")
+        else:
+            st.error("Beispieldatei 'sample_invoice.png' nicht im Ordner gefunden.")
+
+   
     
 
 with col_preview:
