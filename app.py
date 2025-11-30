@@ -50,7 +50,19 @@ with col_controls:
         
         if st.button("✨ Daten extrahieren", type="primary", use_container_width=True):
             
-            
+            with st.spinner("KI liest das Dokument..."):
+                try:
+                    if isinstance(active_file, str):
+                        image = Image.open(active_file)
+                    else:
+                        image = Image.open(active_file)
+
+                    try:
+                        model = genai.GenerativeModel('models/gemini-flash-latest')
+                    except:
+                        model = genai.GenerativeModel('models/gemini-1.5-flash-latest')
+
+                    
     
 
 with col_preview:
