@@ -36,9 +36,9 @@ with col_controls:
     active_file = None
     if uploaded_file:
         active_file = uploaded_file
-        st.session_state.use_sample = False # Reset if user uploads manually
+        st.session_state.use_sample = False 
     elif st.session_state.use_sample:
-        if os.path.exists("sample_invoice.png"): # Make sure this file exists!
+        if os.path.exists("sample_invoice.png"): 
             active_file = "sample_invoice.png"
             st.info("Beispielrechnung wird verwendet.")
         else:
@@ -132,8 +132,6 @@ with col_controls:
                         
                 except Exception as e:
                     st.error(f"Fehler: {e}")
-
-                    
     
 
 with col_preview:
