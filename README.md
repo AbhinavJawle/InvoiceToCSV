@@ -4,6 +4,8 @@
 ![Streamlit](https://img.shields.io/badge/Frontend-Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
 ![AI](https://img.shields.io/badge/AI-Google_Gemini-4285F4?style=flat&logo=google&logoColor=white)
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](YOUR_STREAMLIT_APP_URL_HERE)
+
 ## 💼 Das Geschäftsproblem
 
 Die manuelle Datenerfassung aus Rechnungen ist einer der größten Flaschenhälse in Buchhaltung und Supply Chain Management. Sie ist langsam, fehleranfällig und bindet wertvolle Arbeitszeit. Unternehmen verbringen tausende Stunden damit, Daten von PDFs in Excel-Tabellen zu übertragen.
