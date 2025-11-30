@@ -44,7 +44,13 @@ with col_controls:
         else:
             st.error("Beispieldatei 'sample_invoice.png' nicht im Ordner gefunden.")
 
-   
+    if active_file:
+        if not st.session_state.use_sample:
+             st.success("Datei geladen, bereit zur Extraktion.")
+        
+        if st.button("✨ Daten extrahieren", type="primary", use_container_width=True):
+            
+            
     
 
 with col_preview:
