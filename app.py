@@ -62,6 +62,30 @@ with col_controls:
                     except:
                         model = genai.GenerativeModel('models/gemini-1.5-flash-latest')
 
+                    prompt = """
+                    Extract invoice line items into JSON. Detect the currency symbol (e.g. $, €, ₹).
+                    Output format:
+                    {
+                        "vendor": "string",
+                        "date": "string",
+                        "currency_symbol": "string",
+                        "items": [
+                            {"description": "string", "quantity": int, "price": float, "total": float}
+                        ]
+                    }
+                    """
+                    
+                    response = model.generate_content(
+                        [prompt, image],
+                        generation_config={"response_mime_type": "application/json"}
+                    )
+                    
+                    data = json.loads(response.text)
+                    items = data.get("items", [])
+                    vendor = data.get("vendor", "Unbekannt")
+                    currency = data.get("currency_symbol", "")
+                    inv_date = data.get("date", "Unbekannt")
+
                     
     
 
