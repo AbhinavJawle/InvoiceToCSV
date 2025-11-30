@@ -86,6 +86,53 @@ with col_controls:
                     currency = data.get("currency_symbol", "")
                     inv_date = data.get("date", "Unbekannt")
 
+                    st.divider()
+                    st.subheader("2. Extrahierte Daten")
+                    
+                    c1, c2 = st.columns(2)
+                    c1.info(f"**Lieferant:** {vendor}")
+                    c2.info(f"**Datum:** {inv_date}")
+
+                    if items:
+                        df = pd.DataFrame(items)
+                        
+                        df_display = df.copy()
+                        df_display['price'] = df_display['price'].apply(lambda x: f"{currency}{x:.2f}")
+                        df_display['total'] = df_display['total'].apply(lambda x: f"{currency}{x:.2f}")
+
+                        df_display = df_display.rename(columns={
+                            "description": "Beschreibung",
+                            "quantity": "Menge",
+                            "price": "Einzelpreis",
+                            "total": "Gesamt"
+                        })
+
+                        st.dataframe(df_display, use_container_width=True, hide_index=True)
+                        
+                        df['currency'] = currency 
+                        df_csv = df.rename(columns={
+                            "description": "Beschreibung",
+                            "quantity": "Menge",
+                            "price": "Einzelpreis",
+                            "total": "Gesamt",
+                            "currency": "Währung"
+                        })
+                        
+                        csv = df_csv.to_csv(index=False).encode('utf-8')
+                        
+                        st.download_button(
+                            label="📥 Als CSV herunterladen",
+                            data=csv,
+                            file_name=f"{vendor}_daten.csv",
+                            mime="text/csv",
+                            use_container_width=True
+                        )
+                    else:
+                        st.warning("Keine Positionen gefunden.")
+                        
+                except Exception as e:
+                    st.error(f"Fehler: {e}")
+
                     
     
 
