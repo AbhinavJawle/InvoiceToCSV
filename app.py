@@ -23,3 +23,16 @@ st.markdown("---")
 
 col_controls, col_preview = st.columns([1, 1], gap="medium")
 
+
+
+with col_preview:
+    if active_file:
+        st.subheader("Vorschau")
+        if isinstance(active_file, str):
+            image = Image.open(active_file)
+        else:
+            image = Image.open(active_file)
+            
+        st.image(image, use_container_width=True)
+    else:
+        st.info("👈 Lade eine Rechnung hoch oder klicke auf 'Beispiel laden', um die Vorschau zu sehen.")
